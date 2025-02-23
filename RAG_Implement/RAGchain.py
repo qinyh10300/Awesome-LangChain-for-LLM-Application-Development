@@ -3,7 +3,11 @@ from SiliconFlow import SiliconFlow
 from Embedding import load_and_process_documents, create_vector_store
 
 # 创建 RAG 链的函数
-def ask_rag_chain(vector_store, query):
+def ask_rag_chain(file_path, query):
+    split_docs = load_and_process_documents(file_path)
+    
+    vector_db = create_vector_store(split_docs)
+
     template = """基于以下上下文信息回答问题：
     {context}
     
@@ -11,7 +15,7 @@ def ask_rag_chain(vector_store, query):
     
     请用中文给出详细、专业的回答。如果不知道答案，请说明。"""
 
-    result = vector_store.similarity_search(query, k=4)
+    result = vector_db.similarity_search(query, k=4)
     
     context = ""
     for i, doc in enumerate(result):
@@ -33,13 +37,9 @@ def ask_rag_chain(vector_store, query):
     return response
 
 if __name__ == "__main__":
-    split_docs = load_and_process_documents("text.txt")
-    
-    vector_db = create_vector_store(split_docs)
-    
     question = "RAG是什么?"
 
-    response = ask_rag_chain(vector_store = vector_db, query = question)
-    
+    response = ask_rag_chain(file_path = "./RAG_Implement/text.txt", query = question)
+
     print(response["content"])
     # print("\n" + "-"*50)
