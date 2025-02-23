@@ -7,6 +7,7 @@ from TextSplitter import load_and_process_documents
 def create_vector_store(docs, persist_directory="./chroma_db"):
     # embeddings = OpenAIEmbeddings()  # 也可以使用HuggingFaceEmbeddings
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/sentence-t5-large")
+    # 第一次运行会连接HuggingFace下载并缓存在某个目录,之后直接调用整个缓存内容
     
     # 创建并持久化向量存储
     vector_store = Chroma.from_documents(

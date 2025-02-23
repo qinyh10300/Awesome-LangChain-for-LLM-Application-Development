@@ -87,7 +87,7 @@ if __name__ == "__main__":
                 SiliconFlow.HumanMessage(content="Orange"),]
 
     print(messages)
-    response = llm._call(prompt="你是谁？", model="deepseek-ai/DeepSeek-V2.5", temperature=0.9)
+    response = llm._call(prompt="RAG是什么?", model="deepseek-ai/DeepSeek-V2.5", temperature=0.9)
     print(response["content"])
-    response = llm.call(messages=messages, model="deepseek-ai/DeepSeek-V2.5", temperature=0.9)
-    print(response["content"])
+    # response = llm.call(messages=messages, model="deepseek-ai/DeepSeek-V2.5", temperature=0.9)
+    # print(response["content"])
