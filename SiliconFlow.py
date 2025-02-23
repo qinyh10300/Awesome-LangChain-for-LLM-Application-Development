@@ -52,7 +52,7 @@ class SiliconFlow(LLM):
         response.raise_for_status()
         # print(response.json()["choices"][0]["message"]["content"])
         # print(response.json()["choices"][0]["message"])
-        return response.json()["choices"][0]["message"]["content"]
+        return response.json()["choices"][0]["message"]
 
     def _call(self, prompt: str, stop: list = None, model: str = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B", temperature: float = 0.7) -> str:
         response = self.siliconflow_completions_prompt(model=model, prompt=prompt, temperature=temperature)
